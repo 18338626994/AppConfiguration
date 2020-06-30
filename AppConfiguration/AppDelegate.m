@@ -17,6 +17,24 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    NSString *log = @"";
+    
+#if (APP_CONFIG_FLAG == 0)
+    log = @"生产环境";
+#elif (APP_CONFIG_FLAG == 1)
+    log = @"Debug环境";
+#elif (APP_CONFIG_FLAG == 2)
+    log = @"测试环境";
+#endif
+    
+    NSLog(@"当前运行环境：%@",log);
+    
+    _engine = [[FlutterEngine alloc] initWithName:@"io.flutter" project:nil];
+    [_engine runWithEntrypoint:nil];
+    
+    [GeneratedPluginRegistrant registerWithRegistry:_engine];
+    
     return YES;
 }
 

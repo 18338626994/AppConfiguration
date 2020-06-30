@@ -1,0 +1,16 @@
+//
+//  Debug.xcconfig
+//  AppConfiguration
+//
+//  Created by 汇来米-iOS于云飞 on 2020/6/29.
+//  Copyright © 2020 PnR. All rights reserved.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+#include "Pods/Target Support Files/Pods-AppConfiguration/Pods-AppConfiguration.debug.xcconfig"
+
+FLUTTER_BUILD_MODE = Debug
+APP_DISPLAY_NAME   = 环境配置D
+APP_CONFIG_FLAG    = 1 // 0 生产环境 1 Debug环境 2 测试环境

@@ -7,6 +7,9 @@
 //
 
 #import "ViewController.h"
+#import <Flutter/Flutter.h>
+#import "GeneratedPluginRegistrant.h"
+#import "AppDelegate.h"
 
 @interface ViewController ()
 
@@ -19,5 +22,12 @@
     // Do any additional setup after loading the view.
 }
 
+- (IBAction)flutterDemoButtonClicked:(id)sender {
+    FlutterEngine *engine = ((AppDelegate *)([UIApplication sharedApplication].delegate)).engine;
+    if (engine) {
+        FlutterViewController *flutterVC = [[FlutterViewController alloc] initWithEngine:engine nibName:nil bundle:nil];
+        [self presentViewController:flutterVC animated:YES completion:nil];
+    }
+}
 
 @end
