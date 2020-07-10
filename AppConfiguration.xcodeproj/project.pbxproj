@@ -16,6 +16,15 @@
 		824B24F724A9F27600931456 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 824B24F524A9F27600931456 /* LaunchScreen.storyboard */; };
 		824B24FA24A9F27600931456 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 824B24F924A9F27600931456 /* main.m */; };
 		824B250424A9F86400931456 /* Release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 824B250324A9F86400931456 /* Release.xcconfig */; };
+		824B255024B8420800931456 /* LRNet.m in Sources */ = {isa = PBXBuildFile; fileRef = 824B254524B8420800931456 /* LRNet.m */; };
+		824B255124B8420800931456 /* LRNetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 824B254A24B8420800931456 /* LRNetModel.m */; };
+		824B255224B8420800931456 /* LRNetStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 824B254B24B8420800931456 /* LRNetStatus.m */; };
+		824B255324B8420800931456 /* HLMResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 824B254C24B8420800931456 /* HLMResponse.m */; };
+		824B255424B8420800931456 /* HLMNet.m in Sources */ = {isa = PBXBuildFile; fileRef = 824B254D24B8420800931456 /* HLMNet.m */; };
+		824B256F24B886C600931456 /* LRDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 824B256624B886C600931456 /* LRDialog.m */; };
+		824B257024B886C600931456 /* LRLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = 824B256824B886C600931456 /* LRLoading.m */; };
+		824B257124B886C600931456 /* LRToast.m in Sources */ = {isa = PBXBuildFile; fileRef = 824B256924B886C600931456 /* LRToast.m */; };
+		824B257224B886C600931456 /* LRAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 824B256A24B886C600931456 /* LRAlert.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +44,26 @@
 		824B250524A9F87500931456 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		824B250624A9F88400931456 /* Test.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Test.xcconfig; sourceTree = "<group>"; };
 		824B250724AA1DBF00931456 /* Product.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Product.xcconfig; sourceTree = "<group>"; };
+		824B254524B8420800931456 /* LRNet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRNet.m; sourceTree = "<group>"; };
+		824B254624B8420800931456 /* LRNetModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRNetModel.h; sourceTree = "<group>"; };
+		824B254724B8420800931456 /* LRNetConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRNetConfig.h; sourceTree = "<group>"; };
+		824B254824B8420800931456 /* LRNetStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRNetStatus.h; sourceTree = "<group>"; };
+		824B254924B8420800931456 /* LRNet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRNet.h; sourceTree = "<group>"; };
+		824B254A24B8420800931456 /* LRNetModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRNetModel.m; sourceTree = "<group>"; };
+		824B254B24B8420800931456 /* LRNetStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRNetStatus.m; sourceTree = "<group>"; };
+		824B254C24B8420800931456 /* HLMResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLMResponse.m; sourceTree = "<group>"; };
+		824B254D24B8420800931456 /* HLMNet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLMNet.m; sourceTree = "<group>"; };
+		824B254E24B8420800931456 /* HLMResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLMResponse.h; sourceTree = "<group>"; };
+		824B254F24B8420800931456 /* HLMNet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLMNet.h; sourceTree = "<group>"; };
+		824B256524B886C600931456 /* LRDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRDialog.h; sourceTree = "<group>"; };
+		824B256624B886C600931456 /* LRDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRDialog.m; sourceTree = "<group>"; };
+		824B256824B886C600931456 /* LRLoading.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRLoading.m; sourceTree = "<group>"; };
+		824B256924B886C600931456 /* LRToast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRToast.m; sourceTree = "<group>"; };
+		824B256A24B886C600931456 /* LRAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRAlert.m; sourceTree = "<group>"; };
+		824B256B24B886C600931456 /* LRLoading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRLoading.h; sourceTree = "<group>"; };
+		824B256C24B886C600931456 /* LRDialogHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRDialogHelper.h; sourceTree = "<group>"; };
+		824B256D24B886C600931456 /* LRAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRAlert.h; sourceTree = "<group>"; };
+		824B256E24B886C600931456 /* LRToast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRToast.h; sourceTree = "<group>"; };
 		8BE81E11C9FCEF43071FB24D /* Pods-AppConfiguration.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppConfiguration.debug.xcconfig"; path = "Target Support Files/Pods-AppConfiguration/Pods-AppConfiguration.debug.xcconfig"; sourceTree = "<group>"; };
 		93D89BD33C14CE840B707B6D /* Pods-AppConfiguration.product.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppConfiguration.product.xcconfig"; path = "Target Support Files/Pods-AppConfiguration/Pods-AppConfiguration.product.xcconfig"; sourceTree = "<group>"; };
 		CF2A8AAF9FCE70DEF690084E /* libPods-AppConfiguration.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AppConfiguration.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -83,6 +112,8 @@
 		824B24E624A9F27400931456 /* AppConfiguration */ = {
 			isa = PBXGroup;
 			children = (
+				824B255524B8448B00931456 /* Dialog */,
+				824B254324B8420800931456 /* Request */,
 				824B250024A9F29D00931456 /* Config */,
 				824B24E724A9F27400931456 /* AppDelegate.h */,
 				824B24E824A9F27400931456 /* AppDelegate.m */,
@@ -108,6 +139,56 @@
 				824B250724AA1DBF00931456 /* Product.xcconfig */,
 			);
 			path = Config;
+			sourceTree = "<group>";
+		};
+		824B254324B8420800931456 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				824B254424B8420800931456 /* LRNet */,
+				824B254C24B8420800931456 /* HLMResponse.m */,
+				824B254D24B8420800931456 /* HLMNet.m */,
+				824B254E24B8420800931456 /* HLMResponse.h */,
+				824B254F24B8420800931456 /* HLMNet.h */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		824B254424B8420800931456 /* LRNet */ = {
+			isa = PBXGroup;
+			children = (
+				824B254524B8420800931456 /* LRNet.m */,
+				824B254624B8420800931456 /* LRNetModel.h */,
+				824B254724B8420800931456 /* LRNetConfig.h */,
+				824B254824B8420800931456 /* LRNetStatus.h */,
+				824B254924B8420800931456 /* LRNet.h */,
+				824B254A24B8420800931456 /* LRNetModel.m */,
+				824B254B24B8420800931456 /* LRNetStatus.m */,
+			);
+			path = LRNet;
+			sourceTree = "<group>";
+		};
+		824B255524B8448B00931456 /* Dialog */ = {
+			isa = PBXGroup;
+			children = (
+				824B256724B886C600931456 /* Dialog */,
+				824B256524B886C600931456 /* LRDialog.h */,
+				824B256624B886C600931456 /* LRDialog.m */,
+			);
+			path = Dialog;
+			sourceTree = "<group>";
+		};
+		824B256724B886C600931456 /* Dialog */ = {
+			isa = PBXGroup;
+			children = (
+				824B256C24B886C600931456 /* LRDialogHelper.h */,
+				824B256B24B886C600931456 /* LRLoading.h */,
+				824B256824B886C600931456 /* LRLoading.m */,
+				824B256E24B886C600931456 /* LRToast.h */,
+				824B256924B886C600931456 /* LRToast.m */,
+				824B256D24B886C600931456 /* LRAlert.h */,
+				824B256A24B886C600931456 /* LRAlert.m */,
+			);
+			path = Dialog;
 			sourceTree = "<group>";
 		};
 		90716762906A90B41CAC02F8 /* Pods */ = {
@@ -253,9 +334,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				824B255324B8420800931456 /* HLMResponse.m in Sources */,
 				824B24EF24A9F27400931456 /* ViewController.m in Sources */,
+				824B257224B886C600931456 /* LRAlert.m in Sources */,
+				824B255024B8420800931456 /* LRNet.m in Sources */,
+				824B256F24B886C600931456 /* LRDialog.m in Sources */,
+				824B255224B8420800931456 /* LRNetStatus.m in Sources */,
 				824B24E924A9F27400931456 /* AppDelegate.m in Sources */,
+				824B255424B8420800931456 /* HLMNet.m in Sources */,
+				824B255124B8420800931456 /* LRNetModel.m in Sources */,
 				824B24FA24A9F27600931456 /* main.m in Sources */,
+				824B257124B886C600931456 /* LRToast.m in Sources */,
+				824B257024B886C600931456 /* LRLoading.m in Sources */,
 				824B24EC24A9F27400931456 /* SceneDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -406,6 +496,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y3697NHB4K;
 				INFOPLIST_FILE = AppConfiguration/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -424,6 +515,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y3697NHB4K;
 				INFOPLIST_FILE = AppConfiguration/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -502,6 +594,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y3697NHB4K;
 				INFOPLIST_FILE = AppConfiguration/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -576,6 +669,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y3697NHB4K;
 				INFOPLIST_FILE = AppConfiguration/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
