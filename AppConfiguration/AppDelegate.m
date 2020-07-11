@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "LEEAlert.h"
 
 @interface AppDelegate ()
 
@@ -34,6 +35,8 @@
     [_engine runWithEntrypoint:nil];
     
     [GeneratedPluginRegistrant registerWithRegistry:_engine];
+    
+    [LEEAlert configMainWindow:self.window];
     
     return YES;
 }

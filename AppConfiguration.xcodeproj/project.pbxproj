@@ -25,6 +25,7 @@
 		824B257024B886C600931456 /* LRLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = 824B256824B886C600931456 /* LRLoading.m */; };
 		824B257124B886C600931456 /* LRToast.m in Sources */ = {isa = PBXBuildFile; fileRef = 824B256924B886C600931456 /* LRToast.m */; };
 		824B257224B886C600931456 /* LRAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 824B256A24B886C600931456 /* LRAlert.m */; };
+		82C646CE24B9AC88006427E1 /* HLMUpdateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C646CD24B9AC88006427E1 /* HLMUpdateView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +65,8 @@
 		824B256C24B886C600931456 /* LRDialogHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRDialogHelper.h; sourceTree = "<group>"; };
 		824B256D24B886C600931456 /* LRAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRAlert.h; sourceTree = "<group>"; };
 		824B256E24B886C600931456 /* LRToast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRToast.h; sourceTree = "<group>"; };
+		82C646CC24B9AC88006427E1 /* HLMUpdateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLMUpdateView.h; sourceTree = "<group>"; };
+		82C646CD24B9AC88006427E1 /* HLMUpdateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLMUpdateView.m; sourceTree = "<group>"; };
 		8BE81E11C9FCEF43071FB24D /* Pods-AppConfiguration.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppConfiguration.debug.xcconfig"; path = "Target Support Files/Pods-AppConfiguration/Pods-AppConfiguration.debug.xcconfig"; sourceTree = "<group>"; };
 		93D89BD33C14CE840B707B6D /* Pods-AppConfiguration.product.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppConfiguration.product.xcconfig"; path = "Target Support Files/Pods-AppConfiguration/Pods-AppConfiguration.product.xcconfig"; sourceTree = "<group>"; };
 		CF2A8AAF9FCE70DEF690084E /* libPods-AppConfiguration.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AppConfiguration.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -170,6 +173,7 @@
 		824B255524B8448B00931456 /* Dialog */ = {
 			isa = PBXGroup;
 			children = (
+				82C646CB24B9AC68006427E1 /* CustomView */,
 				824B256724B886C600931456 /* Dialog */,
 				824B256524B886C600931456 /* LRDialog.h */,
 				824B256624B886C600931456 /* LRDialog.m */,
@@ -189,6 +193,15 @@
 				824B256A24B886C600931456 /* LRAlert.m */,
 			);
 			path = Dialog;
+			sourceTree = "<group>";
+		};
+		82C646CB24B9AC68006427E1 /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				82C646CC24B9AC88006427E1 /* HLMUpdateView.h */,
+				82C646CD24B9AC88006427E1 /* HLMUpdateView.m */,
+			);
+			path = CustomView;
 			sourceTree = "<group>";
 		};
 		90716762906A90B41CAC02F8 /* Pods */ = {
@@ -339,6 +352,7 @@
 				824B257224B886C600931456 /* LRAlert.m in Sources */,
 				824B255024B8420800931456 /* LRNet.m in Sources */,
 				824B256F24B886C600931456 /* LRDialog.m in Sources */,
+				82C646CE24B9AC88006427E1 /* HLMUpdateView.m in Sources */,
 				824B255224B8420800931456 /* LRNetStatus.m in Sources */,
 				824B24E924A9F27400931456 /* AppDelegate.m in Sources */,
 				824B255424B8420800931456 /* HLMNet.m in Sources */,

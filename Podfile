@@ -16,6 +16,9 @@ target 'AppConfiguration' do
 
   #加载网络图片
   pod 'SDWebImage'
+  # pod 'SDAutoLayout'
+  pod 'LEEAlert'
+  pod 'MBProgressHUD'
 
   install_all_flutter_pods(flutter_application_path)
   

@@ -13,13 +13,18 @@
 
 typedef void(^LRCallback)(void);
 
-const float LRLoaddingBackgroundOpciaty = 0.4;
-const float LRToastBackgroundOpciaty = 0.6;
-const float LRAlertBackgroundOpciaty = 0.0;
-const float LRActionSheetBackgroundOpciaty = 0.0;
+#define LRToastBackgroundOpciaty        0.6
+#define LRAlertBackgroundOpciaty        0.0
+#define LRLoaddingBackgroundOpciaty     0.4
+#define LRActionSheetBackgroundOpciaty  0.0
 
 #define LRActionTextConfirm @"确认"
 #define LRActionTextCancel  @"取消"
 #define LRActionTextKnown   @"知道了"
+
+#define LRActionFont        [UIFont systemFontOfSize:16]
+#define LRActionColorBlack  [UIColor blackColor]
+#define LRActionColorBlue   [UIColor systemBlueColor]
+#define LRActionColorRed    [UIColor systemRedColor]
 
 #endif /* LRDialogHelper_h */

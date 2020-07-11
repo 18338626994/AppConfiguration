@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -16,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2iU-6a-j7I">
-                                <rect key="frame" x="107" y="423" width="200" height="50"/>
+                                <rect key="frame" x="107" y="199" width="200" height="50"/>
                                 <color key="backgroundColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="0OL-L5-6rb"/>
@@ -28,10 +29,62 @@
                                     <action selector="flutterDemoButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IYA-Mv-ta6"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5nb-JW-4ba">
+                                <rect key="frame" x="80" y="324" width="254" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="S92-52-YlB"/>
+                                </constraints>
+                                <state key="normal" title="Alert"/>
+                                <connections>
+                                    <action selector="alertButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uXX-Es-K59"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rMm-fC-sar">
+                                <rect key="frame" x="80" y="379" width="254" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="t9I-Q4-MCs"/>
+                                </constraints>
+                                <state key="normal" title="Toast"/>
+                                <connections>
+                                    <action selector="toastButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="UKu-ut-8kp"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="img-bc-sH0">
+                                <rect key="frame" x="80" y="434" width="254" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Fg5-mG-w7e"/>
+                                </constraints>
+                                <state key="normal" title="Loading"/>
+                                <connections>
+                                    <action selector="loadingButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1Dd-J7-nZk"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nba-61-TC2">
+                                <rect key="frame" x="80" y="489" width="254" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="xwi-uW-NPz"/>
+                                </constraints>
+                                <state key="normal" title="ActionSheet"/>
+                                <connections>
+                                    <action selector="actionSheetButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rNg-9n-iDh"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="2iU-6a-j7I" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="SEt-gP-5Bj"/>
+                            <constraint firstItem="rMm-fC-sar" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="80" id="0R4-Hj-tVm"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="img-bc-sH0" secondAttribute="trailing" constant="80" id="2P3-uN-LOj"/>
+                            <constraint firstItem="img-bc-sH0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="80" id="7Fx-0w-qgN"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="rMm-fC-sar" secondAttribute="trailing" constant="80" id="8S0-lY-JpA"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="5nb-JW-4ba" secondAttribute="trailing" constant="80" id="GKd-Cp-kfi"/>
+                            <constraint firstItem="5nb-JW-4ba" firstAttribute="top" secondItem="2iU-6a-j7I" secondAttribute="bottom" constant="75" id="LWP-a9-hgx"/>
+                            <constraint firstItem="img-bc-sH0" firstAttribute="top" secondItem="rMm-fC-sar" secondAttribute="bottom" constant="25" id="PQi-Gx-GIU"/>
+                            <constraint firstItem="Nba-61-TC2" firstAttribute="top" secondItem="img-bc-sH0" secondAttribute="bottom" constant="25" id="Qhh-5k-skX"/>
+                            <constraint firstItem="2iU-6a-j7I" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" multiplier="0.5" id="SEt-gP-5Bj"/>
+                            <constraint firstItem="rMm-fC-sar" firstAttribute="top" secondItem="5nb-JW-4ba" secondAttribute="bottom" constant="25" id="VIc-To-zOL"/>
+                            <constraint firstItem="Nba-61-TC2" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="80" id="geo-zt-o6R"/>
+                            <constraint firstItem="5nb-JW-4ba" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="80" id="hba-g2-ddp"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Nba-61-TC2" secondAttribute="trailing" constant="80" id="q3f-pZ-u25"/>
                             <constraint firstItem="2iU-6a-j7I" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="rBH-ah-Tyg"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
