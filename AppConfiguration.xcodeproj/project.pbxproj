@@ -25,6 +25,8 @@
 		824B257024B886C600931456 /* LRLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = 824B256824B886C600931456 /* LRLoading.m */; };
 		824B257124B886C600931456 /* LRToast.m in Sources */ = {isa = PBXBuildFile; fileRef = 824B256924B886C600931456 /* LRToast.m */; };
 		824B257224B886C600931456 /* LRAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 824B256A24B886C600931456 /* LRAlert.m */; };
+		82BB25C424BADDBE00F81AB5 /* HLMLoadConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 82BB25C324BADDBE00F81AB5 /* HLMLoadConfig.m */; };
+		82BB25C724BAE3E600F81AB5 /* AppManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 82BB25C624BAE3E600F81AB5 /* AppManager.m */; };
 		82C646CE24B9AC88006427E1 /* HLMUpdateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C646CD24B9AC88006427E1 /* HLMUpdateView.m */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +67,10 @@
 		824B256C24B886C600931456 /* LRDialogHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRDialogHelper.h; sourceTree = "<group>"; };
 		824B256D24B886C600931456 /* LRAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRAlert.h; sourceTree = "<group>"; };
 		824B256E24B886C600931456 /* LRToast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRToast.h; sourceTree = "<group>"; };
+		82BB25C224BADDBE00F81AB5 /* HLMLoadConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HLMLoadConfig.h; sourceTree = "<group>"; };
+		82BB25C324BADDBE00F81AB5 /* HLMLoadConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HLMLoadConfig.m; sourceTree = "<group>"; };
+		82BB25C524BAE3E600F81AB5 /* AppManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppManager.h; sourceTree = "<group>"; };
+		82BB25C624BAE3E600F81AB5 /* AppManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppManager.m; sourceTree = "<group>"; };
 		82C646CC24B9AC88006427E1 /* HLMUpdateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLMUpdateView.h; sourceTree = "<group>"; };
 		82C646CD24B9AC88006427E1 /* HLMUpdateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLMUpdateView.m; sourceTree = "<group>"; };
 		8BE81E11C9FCEF43071FB24D /* Pods-AppConfiguration.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppConfiguration.debug.xcconfig"; path = "Target Support Files/Pods-AppConfiguration/Pods-AppConfiguration.debug.xcconfig"; sourceTree = "<group>"; };
@@ -120,6 +126,8 @@
 				824B250024A9F29D00931456 /* Config */,
 				824B24E724A9F27400931456 /* AppDelegate.h */,
 				824B24E824A9F27400931456 /* AppDelegate.m */,
+				82BB25C524BAE3E600F81AB5 /* AppManager.h */,
+				82BB25C624BAE3E600F81AB5 /* AppManager.m */,
 				824B24EA24A9F27400931456 /* SceneDelegate.h */,
 				824B24EB24A9F27400931456 /* SceneDelegate.m */,
 				824B24ED24A9F27400931456 /* ViewController.h */,
@@ -148,10 +156,12 @@
 			isa = PBXGroup;
 			children = (
 				824B254424B8420800931456 /* LRNet */,
-				824B254C24B8420800931456 /* HLMResponse.m */,
+				824B254F24B8420800931456 /* HLMNet.h */,
 				824B254D24B8420800931456 /* HLMNet.m */,
 				824B254E24B8420800931456 /* HLMResponse.h */,
-				824B254F24B8420800931456 /* HLMNet.h */,
+				824B254C24B8420800931456 /* HLMResponse.m */,
+				82BB25C224BADDBE00F81AB5 /* HLMLoadConfig.h */,
+				82BB25C324BADDBE00F81AB5 /* HLMLoadConfig.m */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -159,13 +169,13 @@
 		824B254424B8420800931456 /* LRNet */ = {
 			isa = PBXGroup;
 			children = (
+				824B254924B8420800931456 /* LRNet.h */,
 				824B254524B8420800931456 /* LRNet.m */,
 				824B254624B8420800931456 /* LRNetModel.h */,
-				824B254724B8420800931456 /* LRNetConfig.h */,
-				824B254824B8420800931456 /* LRNetStatus.h */,
-				824B254924B8420800931456 /* LRNet.h */,
 				824B254A24B8420800931456 /* LRNetModel.m */,
+				824B254824B8420800931456 /* LRNetStatus.h */,
 				824B254B24B8420800931456 /* LRNetStatus.m */,
+				824B254724B8420800931456 /* LRNetConfig.h */,
 			);
 			path = LRNet;
 			sourceTree = "<group>";
@@ -350,8 +360,10 @@
 				824B255324B8420800931456 /* HLMResponse.m in Sources */,
 				824B24EF24A9F27400931456 /* ViewController.m in Sources */,
 				824B257224B886C600931456 /* LRAlert.m in Sources */,
+				82BB25C724BAE3E600F81AB5 /* AppManager.m in Sources */,
 				824B255024B8420800931456 /* LRNet.m in Sources */,
 				824B256F24B886C600931456 /* LRDialog.m in Sources */,
+				82BB25C424BADDBE00F81AB5 /* HLMLoadConfig.m in Sources */,
 				82C646CE24B9AC88006427E1 /* HLMUpdateView.m in Sources */,
 				824B255224B8420800931456 /* LRNetStatus.m in Sources */,
 				824B24E924A9F27400931456 /* AppDelegate.m in Sources */,

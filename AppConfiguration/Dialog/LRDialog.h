@@ -14,29 +14,18 @@ typedef void(^LRActionConfig)(LEEAction *action);
 
 @interface LRDialog : NSObject
 
-//******************************* Load ***************************//
+//TODO: Loading
++ (void)showLoading;
++ (void)dismissLoading;
++ (void)forceDismissAllLoading;
 
-+ (LRDialog *)showLoading;
-+ (LRDialog *)dismissLoading;
-
-//******************************* Load ***************************//
-
-
-
-
-//******************************* Toast ***************************//
-
+//TODO: Toast
 + (LRDialog *)showToast:(NSString *)toast;
 + (LRDialog *)showToast:(NSString *)toast duration:(double)duration;
 + (LRDialog *)showToast:(NSString *)toast duration:(double)duration delay:(double)delay;
 
-//******************************* Toast ***************************//
 
-
-
-
-//******************************* Alert ***************************//
-
+//TODO: Alert
 /**
  * 单按钮默认Alert样式--蓝色“知道了”按钮，点击无回调
  * @param title       弹框标题
@@ -98,5 +87,58 @@ typedef void(^LRActionConfig)(LEEAction *action);
 
 + (void)dismissAlert;
 
-//******************************* Alert ***************************//
+
+//TODO: ActionSheet
+/**
+ * 双按钮默认ActionSheet样式--蓝色“确认”，可配置：标题、内容
+ * @param title                   弹框标题
+ * @param content               弹框内容
+ * @return LRDialog
+*/
++ (LRDialog *)showSheetTitle:(NSString *)title
+                     content:(NSString *)content;
+
+/**
+ * 双按钮默认ActionSheet样式--灰色“取消” | 蓝色“知道了”，可配置：多按钮文字、字体、颜色和富文本、事件回调
+ * @param title                   弹框标题
+ * @param content               弹框内容
+ * @param actionConfig   多按钮配置
+ * @return LRDialog
+*/
++ (LRDialog *)showSheetTitle:(NSString *)title
+                     content:(NSString *)content
+                actionConfig:(LRActionConfig)actionConfig;
+
+/**
+ * 双按钮默认ActionSheet样式--灰色“取消” | 蓝色“知道了”，可配置：多按钮文字、字体、颜色和富文本、事件回调
+ * @param actionConfigs  多按钮配置
+ * @param cancelConfig    底部按钮配置
+ * @return LRDialog
+*/
++ (LRDialog *)showSheetActionConfigs:(NSArray <LRActionConfig>*)actionConfigs
+                        cancelConfig:(LRActionConfig)cancelConfig;
+
+/**
+ * 双按钮默认ActionSheet样式--灰色“取消” | 蓝色“知道了”，可配置：多按钮文字、字体、颜色和富文本、事件回调
+ * @param title                   弹框标题
+ * @param content               弹框内容
+ * @param actionConfigs  多按钮配置
+ * @param cancelConfig    底部按钮配置
+ * @return LRDialog
+*/
++ (LRDialog *)showSheetTitle:(NSString *)title
+                     content:(NSString *)content
+               actionConfigs:(NSArray <LRActionConfig>*)actionConfigs
+                cancelConfig:(LRActionConfig)cancelConfig;
+
+/**
+ * 自定义ActionSheet无默认样式，可配置自定义视图和蒙层透明度
+ * @param customView   自定义视图
+ * @param opacity          蒙层透明度
+ *
+ * @return LRDialog
+*/
++ (LRDialog *)showCustomSheet:(UIView *)customView
+                      opacity:(float)opacity;
+
 @end

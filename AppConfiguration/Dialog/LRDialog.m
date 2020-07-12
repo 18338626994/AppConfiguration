@@ -7,10 +7,14 @@
 //
 
 #import "LRDialog.h"
+#import "MBProgressHUD.h"
 
 @interface LRDialog()
 
-@property (nonatomic, strong) LEEBaseConfig *alert;
+@property (nonatomic, assign) NSUInteger loadingCounter;
+@property (nonatomic, strong) LEEBaseConfig *baseConfig;
+@property (nonatomic, strong) MBProgressHUD *loadingHUD;
+
 
 @end;
 
@@ -22,28 +26,89 @@ static LRDialog *_dialog;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _dialog = [[LRDialog alloc] init];
+        _dialog.loadingCounter = 0;
     });
     
     return _dialog;
 }
 
-+ (LRDialog *)showLoading {
-    return _dialog;
+#pragma mark - Loading
+
+
+
++ (void)showLoading {
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        // 初始化_dialog
+        [LRDialog sharedInstance].loadingCounter ++;
+        
+        if(!_dialog.loadingHUD.superview) {
+            [[self mainWindow] addSubview:_dialog.loadingHUD];
+            [_dialog.loadingHUD showAnimated:YES];
+        }
+    });
+    
 }
-+ (LRDialog *)dismissLoading {
-    return _dialog;
+
++ (void)dismissLoading {
+    
+    if(_dialog && _dialog.loadingHUD.superview) {
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            _dialog.loadingCounter --;
+            
+            if(_dialog.loadingCounter <= 0){
+                _dialog.loadingCounter = 0;
+                [_dialog.loadingHUD hideAnimated:YES afterDelay:0.5];
+            }
+        });
+    }
 }
+
++ (void)forceDismissAllLoading {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        _dialog.loadingCounter = 0;
+        [_dialog.loadingHUD hideAnimated:YES];
+    });
+}
+
+#pragma mark - Toast
 
 + (LRDialog *)showToast:(NSString *)toast {
-    return _dialog;
-}
-+ (LRDialog *)showToast:(NSString *)toast duration:(double)duration {
-    return _dialog;
-}
-+ (LRDialog *)showToast:(NSString *)toast duration:(double)duration delay:(double)delay {
-    return _dialog;
+    return [self showToast:toast duration:1.5];
 }
 
++ (LRDialog *)showToast:(NSString *)toast duration:(double)duration {
+    return [self showToast:toast duration:duration delay:0.5];
+}
+
++ (LRDialog *)showToast:(NSString *)toast duration:(double)duration delay:(double)delay {
+    
+    UIWindow *window = [self mainWindow];
+    MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:window];
+    hud.label.text = toast;
+    hud.mode = MBProgressHUDModeText;
+    hud.removeFromSuperViewOnHide = YES;
+    // 文本色
+    //hud.contentColor = [UIColor redColor];
+    // 蒙层背景色
+    //hud.backgroundColor = [UIColor yellowColor];
+    // MaskViewM背景色
+    //hud.bezelView.backgroundColor = [UIColor greenColor];
+    
+    [hud showAnimated:YES];
+    [window addSubview:hud];
+    
+    duration = duration <= 0.5 ? 1.5 : duration;
+    
+    [hud hideAnimated:YES afterDelay:duration];
+    
+    return _dialog;
+    
+}
+
+#pragma mark - Alert
 + (LRDialog *)showAlertTitle:(NSString *)title
                     content:(NSString *)content {
     return [self showAlertTitle:title content:content actionConfig:nil];
@@ -55,11 +120,11 @@ static LRDialog *_dialog;
 
 + (LRDialog *)showAlertTitle:(NSString *)title content:(NSString *)content opacity:(float)opacity actionConfig:(LRActionConfig)actionConfig {
     
-    LRDialog *lrRlert = [[LRDialog alloc] init];
+    LRDialog *lrAlert = [[LRDialog alloc] init];
     
-    lrRlert.alert = [LEEAlert alert];
+    lrAlert.baseConfig = [LEEAlert alert];
     
-    LEEBaseConfigModel *config = lrRlert.alert.config;
+    LEEBaseConfigModel *config = lrAlert.baseConfig.config;
     // 蒙版透明度
     if(opacity > 0) {
         config.LeeBackgroundStyleTranslucent(opacity);
@@ -81,7 +146,7 @@ static LRDialog *_dialog;
     
     config.LeeOpenAnimationStyle(LEEAnimationStyleOrientationNone).LeeShow();
     
-    return lrRlert;
+    return lrAlert;
     
 }
 
@@ -91,11 +156,11 @@ static LRDialog *_dialog;
 
 + (LRDialog *)showAlertTitle:(NSString *)title content:(NSString *)content opacity:(float)opacity leftConfig:(LRActionConfig)leftConfig rightConfig:(LRActionConfig)rightConfig {
     
-    LRDialog *lrRlert = [[LRDialog alloc] init];
+    LRDialog *lrAlert = [[LRDialog alloc] init];
     
-    lrRlert.alert = [LEEAlert alert];
+    lrAlert.baseConfig = [LEEAlert alert];
     
-    LEEBaseConfigModel *config = lrRlert.alert.config;
+    LEEBaseConfigModel *config = lrAlert.baseConfig.config;
         
     // 蒙版透明度
     if(opacity > 0) {
@@ -126,17 +191,17 @@ static LRDialog *_dialog;
     config.LeeAddAction(leftConfig).LeeAddAction(rightConfig);
     config.LeeOpenAnimationStyle(LEEAnimationStyleOrientationNone).LeeShow();
     
-    return lrRlert;
+    return lrAlert;
 }
 
 
 + (LRDialog *)showCustomAlert:(UIView *)customView opacity:(float)opacity{
     
-    LRDialog *lrRlert = [[LRDialog alloc] init];
+    LRDialog *lrAlert = [[LRDialog alloc] init];
     
-    lrRlert.alert = [LEEAlert alert];
+    lrAlert.baseConfig = [LEEAlert alert];
     
-    LEEBaseConfigModel *config = lrRlert.alert.config;
+    LEEBaseConfigModel *config = lrAlert.baseConfig.config;
     
     // 蒙版透明度
     if(opacity > 0) {
@@ -148,7 +213,7 @@ static LRDialog *_dialog;
     .LeeCustomView(customView)
     .LeeShow();
         
-    return lrRlert;
+    return lrAlert;
 }
 
 
@@ -156,5 +221,117 @@ static LRDialog *_dialog;
     [LEEAlert closeWithCompletionBlock:nil];
 }
 
+
+#pragma mark - Action Sheet
++ (LRDialog *)showSheetTitle:(NSString *)title content:(NSString *)content {
+    
+    return [self showAlertTitle:title content:content actionConfig:nil];
+}
+
++ (LRDialog *)showSheetTitle:(NSString *)title content:(NSString *)content actionConfig:(LRActionConfig)actionConfig {
+    return [self showSheetTitle:nil content:nil actionConfigs:nil cancelConfig:actionConfig];
+}
+
++ (LRDialog *)showSheetActionConfigs:(NSArray <LRActionConfig>*)actionConfigs cancelConfig:(LRActionConfig)cancelConfig {
+    return [self showSheetTitle:nil content:nil actionConfigs:actionConfigs cancelConfig:cancelConfig];
+}
+
++ (LRDialog *)showSheetTitle:(NSString *)title content:(NSString *)content actionConfigs:(NSArray <LRActionConfig>*)actionConfigs cancelConfig:(LRActionConfig)cancelConfig {
+    
+    LRDialog *lrSheet = [[LRDialog alloc] init];
+    
+    lrSheet.baseConfig = [LEEAlert actionsheet];
+    
+    LEEBaseConfigModel *config = lrSheet.baseConfig.config;
+    
+    // 提头
+    if(title && title.length > 0) config.LeeTitle(title);
+    
+    // 内容
+    if(content && content.length > 0) config.LeeContent(content);
+    
+    // 交互按钮
+    if (actionConfigs && actionConfigs.count > 0) {
+        for (int i = 0; i < actionConfigs.count; i ++) {
+            LRActionConfig actionConfig = actionConfigs[i];
+            config.LeeAddAction(actionConfig);
+        }
+    }
+    
+    LEEAction *cancelAction = [[LEEAction alloc] init];
+    cancelAction.title = LRActionTextConfirm;
+    cancelAction.titleColor = LRActionColorBlue;
+    
+    if (cancelConfig) {
+        cancelConfig(cancelAction);
+    }
+    
+    config.LeeCancelAction(cancelAction.title, cancelAction.clickBlock);
+    config.LeeShow();
+    
+    return lrSheet;
+}
+
++ (LRDialog *)showCustomSheet:(UIView *)customView opacity:(float)opacity {
+    
+    LRDialog *lrSheet = [[LRDialog alloc] init];
+    
+    lrSheet.baseConfig = [LEEAlert actionsheet];
+    
+    LEEBaseConfigModel *config = lrSheet.baseConfig.config;
+    
+    // 蒙版透明度
+    if(opacity > 0) {
+        config.LeeBackgroundStyleTranslucent(opacity);
+    }
+    
+    config.LeeHeaderInsets(UIEdgeInsetsMake(0, 0, 0, 0))
+    .LeeHeaderColor([UIColor clearColor])
+    .LeeCustomView(customView)
+    .LeeShow();
+        
+    return lrSheet;
+    
+}
+
+
+
+#pragma mark - Getter
+
+- (MBProgressHUD *)loadingHUD {
+    if(_loadingHUD == nil){
+        // view仅用于设置BackgroundView的frame
+        _loadingHUD = [[MBProgressHUD alloc] initWithView:[LRDialog mainWindow]];
+        _loadingHUD.mode = MBProgressHUDModeIndeterminate;
+        _loadingHUD.removeFromSuperViewOnHide = YES;
+        
+        // 蒙层背景色
+        _loadingHUD.backgroundColor = [UIColor colorWithWhite:0 alpha:0.1];
+        // MaskViewM背景色
+        // _loadingHUD.bezelView.backgroundColor = [UIColor greenColor];
+        
+    }
+    return _loadingHUD;
+}
+
++ (UIWindow *)mainWindow {
+    
+    UIWindow *tempWindow = nil;
+    
+    for (UIWindow *window in UIApplication.sharedApplication.windows) {
+        /*
+        BOOL isKeyWindow = window.isKeyWindow;
+        BOOL isWindow = [window isKindOfClass:UIWindow.class];
+        BOOL isNormalLevel = window.windowLevel == UIWindowLevelNormal;
+        */
+        if (window.isKeyWindow) tempWindow = window;
+    }
+    
+    if (!tempWindow) {
+        tempWindow = [UIApplication.sharedApplication.windows lastObject];
+    }
+    
+    return tempWindow;
+}
 
 @end
