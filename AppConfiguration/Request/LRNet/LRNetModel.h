@@ -33,9 +33,9 @@ typedef NS_ENUM(NSInteger, LRResqType){
 @property (nonatomic, strong) NSError *error;
 
 // 原始返回结果
-@property (nonatomic, copy) NSDictionary *result;
+@property (nonatomic, copy) id result;
 // 将返回结果处理成的对象
-@property (nonatomic, copy) id responseObject;
+@property (nonatomic, strong) id responseObject;
 
 @end
 

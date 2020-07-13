@@ -87,7 +87,7 @@
     }
 }
 
-- (id)request {
+- (id)_startRequest {
   
     if (!self.isQuiet) {
         [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
@@ -99,50 +99,40 @@
     
     self.netState = [[LRNetStatus sharedInstance] currentNetState];
     
-    __weak typeof(self) wself = self;
-    
     switch (self.request.reqType) {
         case get:
         {
             self.dataTask = [self.httpManager GET:self.request.path parameters:self.request.params headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable result) {
-                __strong typeof(wself) sself = wself;
-                [sself _handleSuccessResponseWithInfo:result];
+                [self _handleSuccessResponseWithInfo:result];
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                __strong typeof(wself) sself = wself;
-                [sself _handleFailureResponseWithError:error];
+                [self _handleFailureResponseWithError:error];
             }];
         }
             break;
         case post:
         {
             self.dataTask = [self.httpManager POST:self.request.path parameters:self.request.params headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable result) {
-                __strong typeof(wself) sself = wself;
-                [sself _handleSuccessResponseWithInfo:result];
+                [self _handleSuccessResponseWithInfo:result];
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                __strong typeof(wself) sself = wself;
-                [sself _handleFailureResponseWithError:error];
+                [self _handleFailureResponseWithError:error];
             }];
         }
             break;
         case put:
         {
             self.dataTask = [self.httpManager PUT:self.request.path parameters:self.request.params headers:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable result) {
-                __strong typeof(wself) sself = wself;
-                [sself _handleSuccessResponseWithInfo:result];
+                [self _handleSuccessResponseWithInfo:result];
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                __strong typeof(wself) sself = wself;
-                [sself _handleFailureResponseWithError:error];
+                [self _handleFailureResponseWithError:error];
             }];
         }
             break;
         case delete:
         {
             self.dataTask = [self.httpManager DELETE:self.request.path parameters:self.request.params headers:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable result) {
-                __strong typeof(wself) sself = wself;
-                [sself _handleSuccessResponseWithInfo:result];
+                [self _handleSuccessResponseWithInfo:result];
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                __strong typeof(wself) sself = wself;
-                [sself _handleFailureResponseWithError:error];
+                [self _handleFailureResponseWithError:error];
             }];
         }
             break;
@@ -150,11 +140,9 @@
         {
             
             self.dataTask = [self.httpManager POST:self.request.path parameters:self.request.params headers:nil constructingBodyWithBlock:self.request.FormData progress:self.request.UploadProgress success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable result) {
-                __strong typeof(wself) sself = wself;
-                [sself _handleSuccessResponseWithInfo:result];
+                [self _handleSuccessResponseWithInfo:result];
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                __strong typeof(wself) sself = wself;
-                [sself _handleFailureResponseWithError:error];
+                [self _handleFailureResponseWithError:error];
             }];
         }
             break;
@@ -166,11 +154,10 @@
             self.dataTask = [self.httpManager dataTaskWithRequest:request uploadProgress:^(NSProgress * _Nonnull uploadProgress) {
             } downloadProgress:^(NSProgress * _Nonnull downloadProgress) {
             } completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
-                __strong typeof(wself) sself = wself;
                 if (result) {
-                    [sself _handleSuccessResponseWithInfo:result];
+                    [self _handleSuccessResponseWithInfo:result];
                 }else{
-                    [sself _handleFailureResponseWithError:error];
+                    [self _handleFailureResponseWithError:error];
                 }
             }];
             
@@ -185,11 +172,10 @@
             self.dataTask = [self.httpManager dataTaskWithRequest:request uploadProgress:^(NSProgress * _Nonnull uploadProgress) {
             } downloadProgress:^(NSProgress * _Nonnull downloadProgress) {
             } completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable result, NSError * _Nullable error) {
-                __strong typeof(wself) sself = wself;
                 if (result) {
-                    [sself _handleSuccessResponseWithInfo:result];
+                    [self _handleSuccessResponseWithInfo:result];
                 }else{
-                    [sself _handleFailureResponseWithError:error];
+                    [self _handleFailureResponseWithError:error];
                 }
             }];
             [self.dataTask resume];
@@ -210,17 +196,17 @@
 - (id)requestCallBack:(void (^)(LRRespModel *))requestCallback{
     self.callback = requestCallback;
     [self preRequestHandle];
-    [self request];
+    [self _startRequest];
     
     return self;
 }
 
 - (id)requestOnly{
-    return [self request];
+    return [self _startRequest];
 }
 
 - (id)reRequest{
-    return [self request];
+    return [self _startRequest];
 }
 
 - (void)_handleSuccessResponseWithInfo:(id)result{

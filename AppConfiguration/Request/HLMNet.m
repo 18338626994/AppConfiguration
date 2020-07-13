@@ -164,6 +164,11 @@ void (^_defaultConfig)(HLMNet *request);
 
 - (void)handleResponseWithNetEngine:(HLMNet *)engine {
     
+    if(engine.response.result) {
+        id jsonObj = [NSJSONSerialization JSONObjectWithData:engine.response.result options:NSJSONReadingMutableContainers error:nil];
+        engine.response.result = jsonObj;
+    }
+    
     // 如果必要可以再次解密返回数据...
     
     /*

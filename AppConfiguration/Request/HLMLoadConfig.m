@@ -60,7 +60,9 @@ static HLMLoadConfig *_loadConfig;
             .LeeShow();
         }
     }else {
-        [LRDialog showToast:reponse.respDesc duration:2];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [LRDialog showToast:reponse.respDesc duration:2];
+        });
     }
 }
 
