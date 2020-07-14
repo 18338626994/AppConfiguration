@@ -14,7 +14,7 @@
 @property (nonatomic, assign) NSUInteger loadingCounter;
 @property (nonatomic, strong) LEEBaseConfig *baseConfig;
 @property (nonatomic, strong) MBProgressHUD *loadingHUD;
-
+@property (nonatomic, strong) dispatch_queue_t concurrentQueue;
 
 @end;
 
@@ -26,49 +26,61 @@ static LRDialog *_dialog;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _dialog = [[LRDialog alloc] init];
-        _dialog.loadingCounter = 0;
     });
     
     return _dialog;
 }
 
-#pragma mark - Loading
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        NSString *identifier = [NSString stringWithFormat:@"<LRDialogLoadingQueue>%p",self];
+        _concurrentQueue = dispatch_queue_create([identifier UTF8String], DISPATCH_QUEUE_CONCURRENT);
+        _loadingCounter = 0;
+    }
+    return self;
+}
 
+#pragma mark - Loading
 
 
 + (void)showLoading {
     
-    dispatch_async(dispatch_get_main_queue(), ^{
+    dispatch_barrier_async([LRDialog sharedInstance].concurrentQueue, ^{
         // 初始化_dialog
-        [LRDialog sharedInstance].loadingCounter ++;
+        _dialog.loadingCounter ++;
         
-        if(!_dialog.loadingHUD.superview) {
-            [[self mainWindow] addSubview:_dialog.loadingHUD];
-            [_dialog.loadingHUD showAnimated:YES];
-        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if(!_dialog.loadingHUD.superview) {
+                [[self mainWindow] addSubview:_dialog.loadingHUD];
+                [_dialog.loadingHUD showAnimated:YES];
+                //[_dialog.loadingHUD show:YES];
+            }
+        });
     });
-    
 }
 
 + (void)dismissLoading {
     
-    if(_dialog && _dialog.loadingHUD.superview) {
+    dispatch_barrier_async([LRDialog sharedInstance].concurrentQueue, ^{
+        // 自减
+        _dialog.loadingCounter --;
         
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            _dialog.loadingCounter --;
-            
-            if(_dialog.loadingCounter <= 0){
-                _dialog.loadingCounter = 0;
-                [_dialog.loadingHUD hideAnimated:YES afterDelay:0.5];
-            }
-        });
-    }
+        if(_dialog.loadingCounter <= 0) {
+            _dialog.loadingCounter = 0;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [_dialog.loadingHUD hideAnimated:YES afterDelay:0.1];
+                //[_dialog.loadingHUD hide:YES afterDelay:0.1];
+            });
+        }
+    });
 }
 
 + (void)forceDismissAllLoading {
     dispatch_async(dispatch_get_main_queue(), ^{
         _dialog.loadingCounter = 0;
+        //[_dialog.loadingHUD hide:YES];
         [_dialog.loadingHUD hideAnimated:YES];
     });
 }
@@ -88,6 +100,7 @@ static LRDialog *_dialog;
     UIWindow *window = [self mainWindow];
     MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:window];
     hud.label.text = toast;
+    //hud.labelText = toast;
     hud.mode = MBProgressHUDModeText;
     hud.removeFromSuperViewOnHide = YES;
     // 文本色
@@ -98,11 +111,13 @@ static LRDialog *_dialog;
     //hud.bezelView.backgroundColor = [UIColor greenColor];
     
     [hud showAnimated:YES];
+    //[hud show:YES];
     [window addSubview:hud];
     
     duration = duration <= 0.5 ? 1.5 : duration;
     
     [hud hideAnimated:YES afterDelay:duration];
+    //[hud hide:YES afterDelay:duration];
     
     return _dialog;
     
@@ -335,3 +350,4 @@ static LRDialog *_dialog;
 }
 
 @end
+
